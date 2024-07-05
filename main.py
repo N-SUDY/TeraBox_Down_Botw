@@ -146,7 +146,8 @@ def health_check():
 if __name__ == "__main__":
     # Start Flask app in a separate thread
     def run_flask():
-        app.run(host='0.0.0.0', port=5000)
+        port = int(os.getenv('PORT', 5000))
+        app.run(host='0.0.0.0', port=port)
 
     flask_thread = Thread(target=run_flask)
     flask_thread.start()
